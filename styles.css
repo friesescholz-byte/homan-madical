@@ -163,10 +163,10 @@ button, input, select, textarea {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 16px 32px;
-  border-radius: var(--radius-md);
+  padding: 13px 26px;
+  border-radius: var(--radius-sm);
   font-weight: 600;
-  font-size: 16px;
+  font-size: 15px;
   transition: var(--transition-smooth);
   cursor: pointer;
   border: none;
@@ -388,6 +388,7 @@ button, input, select, textarea {
   height: 100%;
   background-size: cover;
   background-position: center;
+  background-attachment: fixed;
   opacity: 0;
   transition: opacity 1.5s ease-in-out;
 }
@@ -500,7 +501,7 @@ button, input, select, textarea {
 
 /* --- 8. Trust Bar Section --- */
 .trustbar {
-  padding: 40px 0;
+  padding: 24px 0;
   background-color: var(--color-bg-soft);
   border-top: 1px solid var(--color-border);
   border-bottom: 1px solid var(--color-border);
@@ -511,23 +512,23 @@ button, input, select, textarea {
   justify-content: space-around;
   align-items: center;
   flex-wrap: wrap;
-  gap: 30px;
+  gap: 16px;
 }
 
 .trust-logo {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 8px;
   font-family: var(--font-headings);
   font-weight: 700;
-  font-size: 15px;
+  font-size: 13px;
   color: var(--color-text-muted);
 }
 
 .trust-logo svg {
   color: var(--color-accent-blue);
-  width: 24px;
-  height: 24px;
+  width: 20px;
+  height: 20px;
 }
 
 /* --- 9. Key Strengths Section --- */
@@ -1320,7 +1321,6 @@ button, input, select, textarea {
 .delay-3 { transition-delay: 0.3s; }
 
 /* --- 16. Responsive Layout Breakpoints --- */
-/* --- 16. Responsive Layout Breakpoints --- */
 @media (max-width: 1024px) {
   .hero-overlay {
     background: linear-gradient(to bottom, rgba(31, 27, 22, 0.98) 0%, rgba(31, 27, 22, 0.85) 50%, rgba(31, 27, 22, 0.4) 100%) !important;
@@ -1370,27 +1370,35 @@ button, input, select, textarea {
 
 @media (max-width: 768px) {
   :root {
-    --section-padding: 60px;
+    --section-padding: 48px;
+  }
+
+  .container {
+    padding: 0 16px;
   }
   
   .header {
-    padding: 16px 0;
+    padding: 12px 0;
   }
 
-  /* Hamburger Menu drawer overlay styles */
+  .logo-img {
+    height: 36px;
+  }
+
+  /* Hamburger Menu drawer */
   .nav {
     position: fixed;
     top: 0;
     right: -100%;
-    width: 80%;
-    max-width: 300px;
+    width: 75%;
+    max-width: 280px;
     height: 100vh;
     background-color: var(--color-primary-dark);
-    box-shadow: -10px 0 30px rgba(0, 0, 0, 0.25);
+    box-shadow: -10px 0 30px rgba(0, 0, 0, 0.3);
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: var(--transition-smooth);
+    transition: right 0.4s cubic-bezier(0.22, 1, 0.36, 1);
     z-index: 1050;
   }
   
@@ -1402,14 +1410,14 @@ button, input, select, textarea {
     display: flex !important;
     flex-direction: column;
     align-items: center;
-    gap: 32px;
+    gap: 28px;
     width: 100%;
     padding: 24px;
   }
 
   .nav-link {
-    font-size: 18px;
-    color: rgba(255, 255, 255, 0.8) !important;
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.85) !important;
     font-weight: 600;
   }
 
@@ -1417,12 +1425,24 @@ button, input, select, textarea {
     color: var(--color-bg-white) !important;
   }
 
+  .nav-link::after {
+    display: none !important;
+  }
+
   .nav-toggle {
     display: block;
+    position: relative;
+    z-index: 1100;
   }
   
+  .nav-toggle span {
+    transition: all 0.3s ease;
+    background-color: var(--color-bg-white);
+  }
+
   .nav-toggle.active span:nth-child(1) {
-    transform: rotate(45deg) translate(6px, 6px);
+    transform: rotate(45deg) translate(5px, 6px);
+    background-color: var(--color-bg-white) !important;
   }
 
   .nav-toggle.active span:nth-child(2) {
@@ -1430,74 +1450,183 @@ button, input, select, textarea {
   }
 
   .nav-toggle.active span:nth-child(3) {
-    transform: rotate(-45deg) translate(6px, -6px);
+    transform: rotate(-45deg) translate(5px, -6px);
+    background-color: var(--color-bg-white) !important;
   }
   
   .header.scrolled .nav-toggle span {
     background-color: var(--color-primary-dark);
   }
+
+  .header.scrolled .nav-toggle.active span {
+    background-color: var(--color-bg-white) !important;
+  }
   
-  .header-cta .phone-link {
+  .header-cta {
     display: none;
   }
-  
-  .strengths-grid {
-    grid-template-columns: 1fr;
-  }
-  
-  .products-grid {
-    grid-template-columns: 1fr;
+
+  /* Hero compact */
+  .hero {
+    padding-top: 120px;
+    padding-bottom: 60px;
   }
 
-  /* Collage mobile scaling */
-  .collage-container {
-    height: 300px;
-    margin-top: 24px;
+  .hero-slideshow .slide {
+    background-attachment: scroll;
   }
-  
-  .img-large {
-    height: 220px;
+
+  .hero-overlay {
+    background: linear-gradient(to bottom, rgba(31, 27, 22, 0.95) 0%, rgba(31, 27, 22, 0.8) 60%, rgba(31, 27, 22, 0.5) 100%) !important;
   }
-  
-  .img-small {
-    height: 170px;
-  }
-  
-  .form-row {
-    grid-template-columns: 1fr;
-    gap: 20px;
-  }
-  
+
   .hero-content h1 {
-    font-size: 32px;
+    font-size: 28px;
     line-height: 1.25;
+    letter-spacing: -0.5px;
   }
   
   .hero-content p {
-    font-size: 16px;
+    font-size: 15px;
+    margin-bottom: 24px;
+    line-height: 1.5;
+  }
+
+  .hero-content .eyebrow {
+    font-size: 11px;
+    padding: 4px 12px;
+    margin-bottom: 16px;
+  }
+
+  .hero-ctas {
     margin-bottom: 32px;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    padding: 10px 20px;
+    font-size: 14px;
   }
 
   .hero-trust-indicators {
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
     width: 100%;
+    gap: 8px;
+    padding-top: 16px;
+  }
+
+  .hero-trust-item {
+    font-size: 12px;
+    gap: 6px;
+  }
+
+  .hero-trust-item svg {
+    width: 14px;
+    height: 14px;
+  }
+
+  /* Trust Bar compact */
+  .trustbar {
+    padding: 16px 0;
+  }
+
+  .trustbar-container {
+    gap: 10px;
+    justify-content: center;
+  }
+
+  .trust-logo {
+    font-size: 11px;
+    gap: 5px;
+  }
+
+  .trust-logo svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  /* Section headers */
+  .section-header h2 {
+    font-size: 26px;
+  }
+
+  .section-header p {
+    font-size: 14px;
+  }
+  
+  .strengths-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .strength-card {
+    padding: 24px;
+  }
+  
+  .products-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  /* Collage mobile */
+  .collage-container {
+    height: 260px;
+    margin-top: 24px;
+  }
+  
+  .img-large {
+    height: 180px;
+  }
+  
+  .img-small {
+    height: 140px;
+  }
+  
+  .form-row {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .contact-card {
+    padding: 24px;
+  }
+
+  /* Footer mobile */
+  .footer {
+    padding: 40px 0 24px;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    margin-bottom: 32px;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding-top: 24px;
     gap: 12px;
   }
 
-  .modal-content {
-    padding: 32px 20px;
-    width: 95%;
+  .footer-legal-links {
+    gap: 16px;
   }
-}
 
-@media (max-width: 600px) {
-  .header-cta {
-    display: none; /* Hide header CTA entirely to save narrow screen space */
+  .modal-content {
+    padding: 24px 16px;
+    width: 95%;
+    max-height: 85vh;
   }
-  
+
   .quality-certificate-card {
     padding: 24px;
+  }
+
+  .quality-row {
+    gap: 32px;
   }
 }
 
