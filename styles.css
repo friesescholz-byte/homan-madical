@@ -1565,12 +1565,14 @@ button, input, select, textarea {
     padding-bottom: 60px;
   }
 
-  .hero-slideshow .slide {
+  .hero-slideshow .slide.active {
     background-attachment: scroll;
+    opacity: 0.8 !important;
   }
 
   .hero-overlay {
-    background: linear-gradient(to bottom, rgba(31, 27, 22, 0.95) 0%, rgba(31, 27, 22, 0.8) 60%, rgba(31, 27, 22, 0.5) 100%) !important;
+    background: radial-gradient(circle at center, rgba(31, 27, 22, 0.4) 0%, rgba(31, 27, 22, 0.85) 100%),
+                linear-gradient(to bottom, rgba(31, 27, 22, 0.6) 0%, rgba(31, 27, 22, 0.4) 50%, rgba(31, 27, 22, 0.9) 100%) !important;
   }
 
   .hero-content h1 {
@@ -1579,12 +1581,14 @@ button, input, select, textarea {
     letter-spacing: -0.5px;
     word-wrap: break-word;
     overflow-wrap: break-word;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7);
   }
   
   .hero-content p {
     font-size: 15px;
     margin-bottom: 24px;
     line-height: 1.5;
+    text-shadow: 0 1px 6px rgba(0, 0, 0, 0.7);
   }
 
   .hero-content .eyebrow {
@@ -1604,21 +1608,7 @@ button, input, select, textarea {
   }
 
   .hero-trust-indicators {
-    flex-direction: column;
-    align-items: flex-start;
-    width: 100%;
-    gap: 8px;
-    padding-top: 16px;
-  }
-
-  .hero-trust-item {
-    font-size: 12px;
-    gap: 6px;
-  }
-
-  .hero-trust-item svg {
-    width: 14px;
-    height: 14px;
+    display: none !important;
   }
 
   /* Trust Bar compact */
