@@ -275,6 +275,129 @@ button, input, select, textarea {
   width: 100%;
 }
 
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+/* --- Language Switcher (Scholz & Friese Minimal Glassmorphism & Light Mode) --- */
+.lang-switch {
+  display: inline-flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-radius: 9999px;
+  padding: 3px;
+  gap: 2px;
+  transition: var(--transition-smooth);
+  user-select: none;
+}
+
+.lang-btn {
+  background: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.85);
+  font-family: var(--font-headings);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  padding: 4px 8px;
+  border-radius: 9999px;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.22, 1, 0.36, 1);
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  justify-content: center;
+}
+
+.lang-flag {
+  width: 14px;
+  height: 10px;
+  border-radius: 2px;
+  display: inline-block;
+  vertical-align: middle;
+  flex-shrink: 0;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15);
+}
+
+.lang-btn:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.lang-btn.active {
+  background: #ffffff;
+  color: var(--color-primary-dark);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.18);
+}
+
+.lang-divider {
+  display: none;
+}
+
+/* Visibility Defaults */
+.lang-switch-desktop {
+  display: inline-flex;
+}
+
+.lang-switch-header-mobile {
+  display: none;
+}
+
+/* Scrolled Header state */
+.header.scrolled .lang-switch {
+  background: #F1F5F9;
+  border-color: #E2E8F0;
+}
+
+.header.scrolled .lang-btn {
+  color: #64748B;
+}
+
+.header.scrolled .lang-btn:hover {
+  color: var(--color-primary-dark);
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.header.scrolled .lang-btn.active {
+  background: #ffffff;
+  color: var(--color-primary-dark);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+/* Inside Mobile Nav Menu Header */
+.nav-mobile-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.lang-switch-mobile {
+  display: inline-flex;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.lang-switch-mobile .lang-btn {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.lang-switch-mobile .lang-btn:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.lang-switch-mobile .lang-btn.active {
+  background: #ffffff;
+  color: var(--color-primary-dark);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+}
+
 .header-cta {
   display: flex;
   align-items: center;
@@ -1563,6 +1686,14 @@ button, input, select, textarea {
   
   .header-cta {
     display: none;
+  }
+
+  .lang-switch-desktop {
+    display: none !important;
+  }
+
+  .lang-switch-header-mobile {
+    display: inline-flex !important;
   }
 
   /* Hero compact */

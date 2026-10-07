@@ -97,39 +97,35 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // --- 5. Accessible Modals Toggle ---
+  // --- 5. Accessible Modals Toggle (Event Delegation for i18n resilience) ---
   const modalImpressum = document.getElementById('modal-impressum');
   const modalDatenschutz = document.getElementById('modal-datenschutz');
   const modalBarrierefreiheit = document.getElementById('modal-barrierefreiheit');
   
   const openModal = (modal) => {
+    if (!modal) return;
     modal.classList.add('active');
     document.body.style.overflow = 'hidden'; // Prevent background scrolling
   };
 
   const closeModal = (modal) => {
+    if (!modal) return;
     modal.classList.remove('active');
     document.body.style.overflow = '';
   };
 
-  // Triggers for Impressum
-  document.getElementById('impressum-link')?.addEventListener('click', (e) => {
-    e.preventDefault();
-    openModal(modalImpressum);
-  });
-
-  // Triggers for Datenschutz
-  const openDatenschutz = (e) => {
-    e.preventDefault();
-    openModal(modalDatenschutz);
-  };
-  document.getElementById('datenschutz-link')?.addEventListener('click', openDatenschutz);
-  document.getElementById('datenschutz-link-footer')?.addEventListener('click', openDatenschutz);
-
-  // Triggers for Barrierefreiheit
-  document.getElementById('barrierefreiheit-link-footer')?.addEventListener('click', (e) => {
-    e.preventDefault();
-    openModal(modalBarrierefreiheit);
+  // Triggers using event delegation
+  document.addEventListener('click', (e) => {
+    if (e.target.closest('#impressum-link')) {
+      e.preventDefault();
+      openModal(modalImpressum);
+    } else if (e.target.closest('#datenschutz-link') || e.target.closest('#datenschutz-link-footer')) {
+      e.preventDefault();
+      openModal(modalDatenschutz);
+    } else if (e.target.closest('#barrierefreiheit-link-footer')) {
+      e.preventDefault();
+      openModal(modalBarrierefreiheit);
+    }
   });
 
   // Close Modals
@@ -154,13 +150,19 @@ document.addEventListener('DOMContentLoaded', () => {
   const contactForm = document.getElementById('contact-form');
   const successMessage = document.getElementById('form-success');
 
+  const getT = (key, fallback) => {
+    return (window.HomannI18n && typeof window.HomannI18n.t === 'function') 
+      ? window.HomannI18n.t(key) 
+      : fallback;
+  };
+
   if (contactForm && successMessage) {
     contactForm.addEventListener('submit', async (e) => {
       e.preventDefault();
 
       const turnstileToken = window.turnstile ? window.turnstile.getResponse() : '';
       if (!turnstileToken) {
-        alert('Bitte bestätigen Sie den Spam-Schutz (Turnstile).');
+        alert(getT('contact.turnstile_alert', 'Bitte bestätigen Sie den Spam-Schutz (Turnstile).'));
         return;
       }
 
@@ -168,7 +170,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const submitBtn = contactForm.querySelector('button[type="submit"]');
       const originalText = submitBtn.textContent;
       submitBtn.disabled = true;
-      submitBtn.textContent = 'Wird gesendet...';
+      submitBtn.textContent = getT('contact.form_submitting', 'Wird gesendet...');
 
       try {
         const payload = {
@@ -208,20 +210,20 @@ document.addEventListener('DOMContentLoaded', () => {
             successMessage.style.display = 'none';
           }, 8000);
         } else {
-          alert('Fehler beim Senden: ' + (result.message || 'Unbekannter Fehler. Bitte versuchen Sie es später erneut.'));
+          alert(getT('contact.error_alert', 'Fehler beim Senden: ') + (result.message || 'Unbekannter Fehler. Bitte versuchen Sie es später erneut.'));
           if (window.turnstile) {
             window.turnstile.reset();
           }
         }
       } catch (err) {
         console.error('Submit error:', err);
-        alert('Verbindungsfehler: Die Anfrage konnte nicht gesendet werden.');
+        alert(getT('contact.connection_error', 'Verbindungsfehler: Die Anfrage konnte nicht gesendet werden.'));
         if (window.turnstile) {
           window.turnstile.reset();
         }
       } finally {
         submitBtn.disabled = false;
-        submitBtn.textContent = originalText;
+        submitBtn.textContent = getT('contact.form_submit', originalText);
       }
     });
   }
