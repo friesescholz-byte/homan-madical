@@ -27,7 +27,7 @@ const translations = {
     // Hero Section
     "hero.eyebrow": "Made in Germany",
     "hero.title": "Medizinische Verbandstoffe in <span>Perfektion</span>.",
-    "hero.desc": "Seit über 80 Jahren Ihr zuverlässiger Partner für hochwertige Pflaster, Wundschnellverbände und individuelle Private-Label-Konzepte. Entwickelt und produziert am Standort Stolzenau.",
+    "hero.desc": "Seit über 80 Jahren Ihr zuverlässiger Partner für hochwertige Pflaster, Wundschnellverbände und individuelle Private-Label-Konzepte. Entwickelt und produziert qualitätsgesichert am Standort Stolzenau.",
     "hero.cta_primary": "Jetzt Anfrage stellen",
     "hero.cta_secondary": "Direkt anrufen",
     "hero.badge_iso": "EN ISO 13485 zertifiziert",
@@ -232,7 +232,7 @@ const translations = {
     // Hero Section
     "hero.eyebrow": "Made in Germany",
     "hero.title": "Medical Dressings Crafted to <span>Perfection</span>.",
-    "hero.desc": "For over 80 years, your trusted partner for high-grade plasters, adhesive bandages, and customized private-label concepts. Engineered and manufactured at our Stolzenau facility in Germany.",
+    "hero.desc": "For over 80 years, your trusted partner for high-grade plasters, adhesive bandages, and customized private-label concepts. Engineered and manufactured with certified quality assurance at our Stolzenau facility in Germany.",
     "hero.cta_primary": "Request a Quote Now",
     "hero.cta_secondary": "Call Directly",
     "hero.badge_iso": "EN ISO 13485 Certified",
